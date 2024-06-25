@@ -187,6 +187,33 @@ class SinglyLinkedList {
 
 		return this.printListValues();
 	}
+
+	reverse() {
+		if (!this.head.next) {
+			return this.head;
+		}
+
+		let first = this.head;
+		this.tail = this.head;
+		let second = first.next;
+
+		while (second) {
+			const temp = second.next;
+			second.next = first;
+			first = second;
+			second = temp;
+		}
+		this.head.next = null;
+		this.head = first;
+		return this;
+	}
 }
 
 const myList = new SinglyLinkedList();
+myList.appendLast(10);
+myList.appendLast(11);
+myList.appendLast(12);
+myList.appendLast(13);
+myList.reverse();
+console.log(myList);
+console.log(myList.printListValues());
